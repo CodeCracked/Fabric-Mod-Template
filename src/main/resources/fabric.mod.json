@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "modtemplate",
+  "version": "${version}",
+  "name": "Mod Template",
+  "description": "Mod Description",
+  "authors": ["CodeCracked"],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/keystone-editor",
+    "issues": "https://github.com/KeystoneTeam/KeystoneEditor/issues",
+    "sources": "https://github.com/KeystoneTeam/KeystoneEditor"
+  },
+  "license": "GPL-3.0",
+  "icon": "assets/modtemplate/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "modtemplate.TemplateMod"
+    ],
+    "main": [
+      "modtemplate.TemplateMod"
+    ]
+  },
+  "mixins": [
+    "modtemplate.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": ">=${fabric_version}",
+    "minecraft": "${target_minecraft_versions}"
+  },
+  "custom": {
+    "updatesFile": "https://raw.githubusercontent.com/KeystoneTeam/KeystoneEditor/master/updates.ini"
+  }
+}
