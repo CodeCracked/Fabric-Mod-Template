@@ -1,15 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "modtemplate.mixins",
+  "package": "mod_profiles.mixins",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [
-
-  ],
   "client": [
-
+    "MainMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-	}
+  }
 }

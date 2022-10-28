@@ -1,4 +1,4 @@
-package modtemplate;
+package mod_profiles;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.Version;
@@ -30,11 +30,16 @@ public class VersionChecker
         FAILED
     }
     
+    public static String getModVersion()
+    {
+        ModMetadata metadata = FabricLoader.getInstance().getModContainer(ModProfilesMod.MODID).get().getMetadata();
+        return metadata.getVersion().getFriendlyString().split("-")[0];
+    }
     public static Result doVersionCheck()
     {
         try
         {
-            ModMetadata metadata = FabricLoader.getInstance().getModContainer(TemplateMod.MODID).get().getMetadata();
+            ModMetadata metadata = FabricLoader.getInstance().getModContainer(ModProfilesMod.MODID).get().getMetadata();
             URL updatesFileURL = new URL(metadata.getCustomValue("updatesFile").getAsString());
             
             String modName = metadata.getName();
@@ -86,7 +91,7 @@ public class VersionChecker
                             if (modVersion.compareTo(version) < 0) changelog.add(new Pair<>(version, value));
                         } catch (VersionParsingException e)
                         {
-                            TemplateMod.LOGGER.error("Could not parse changelog entry version key!");
+                            ModProfilesMod.LOGGER.error("Could not parse changelog entry version key!");
                             e.printStackTrace();
                         }
                     });
@@ -123,11 +128,11 @@ public class VersionChecker
         {
             if (e instanceof SocketTimeoutException)
             {
-                TemplateMod.LOGGER.error("Version check timed out!");
+                ModProfilesMod.LOGGER.error("Version check timed out!");
             }
             else
             {
-                TemplateMod.LOGGER.error("Failed to perform version check!");
+                ModProfilesMod.LOGGER.error("Failed to perform version check!");
                 e.printStackTrace();
             }
 

@@ -1,23 +1,23 @@
 1. Update fabric.mod.json
 	a. Change 'id', 'name', 'description'
-	b. Change 'icon' from assets/modtemplate/icon.png to assets/<modid>/icon.png
-	c. Change 'mixins' from modtemplate.mixins.json to <modid>.mixins.json
+	b. Change 'icon' from assets/mod_profiles/icon.png to assets/<modid>/icon.png
+	c. Change 'mixins' from mod_profiles.mixins.json to <modid>.mixins.json
 	d. Change 'entrypoints'
 	e. Change 'custom.updatesFile'
 2. Update src/resources
-	a. Change assets/modtemplate to assets/<modid>
+	a. Change assets/mod_profiles to assets/<modid>
 	b. Change icon.png
-	c. Change modtemplate.mixins.json to <modid>.mixins.json
-	d. Update modtemplate.mixins.json 'package' to <modid>.mixins
+	c. Change mod_profiles.mixins.json to <modid>.mixins.json
+	d. Update mod_profiles.mixins.json 'package' to <modid>.mixins
 	d. Update pack.mcmeta
 3. Update gradle.properties
 	a. Set the target Minecraft version using fabricmc.net/versions.html
-	b. Change 'archive_base_name' from modtemplate to <modid>
+	b. Change 'archive_base_name' from mod_profiles to <modid>
 4. Update build.gradle
-	a. Line 81: Change 'relocateShadowJar.prefix' from modtemplate.shadow to <modid>.shadow
+	a. Line 81: Change 'relocateShadowJar.prefix' from mod_profiles.shadow to <modid>.shadow
 5. Update updates.ini
 6. Update src/java
-	a. Change modtemplate to <modid>
+	a. Change mod_profiles to <modid>
 	b. Ensure TemplateMod.MODID is updated correctly
 7. Fix Run Configurations
 	a. Set the module of the 'Minecraft Client' and 'Minecraft Server' run configurations

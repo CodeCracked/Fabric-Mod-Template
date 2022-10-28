@@ -16,6 +16,10 @@ repositories {
         name "tterrag maven"
         url "https://maven.tterrag.com/"
     }
+    maven {
+        name "jitpack"
+        url "https://jitpack.io"
+    }
 }
 
 configurations {
@@ -30,6 +34,8 @@ dependencies {
 
     // Mod Dependencies
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    shade 'org.json:json:20220320'
+    shade 'io.vavr:vavr:0.9.0'
 }
 
 // Autofill fabric.mod.json values
@@ -78,7 +84,7 @@ shadowJar {
 }
 task relocateShadowJar(type: ConfigureShadowRelocation) {
     target = tasks.shadowJar
-    prefix = "modtemplate.shadow"
+    prefix = "mod_profiles.shadow"
 }
 remapJar {
     classifier = 'fabric'
