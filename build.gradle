@@ -34,8 +34,6 @@ dependencies {
 
     // Mod Dependencies
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    shade 'org.json:json:20220320'
-    shade 'io.vavr:vavr:0.9.0'
 }
 
 // Autofill fabric.mod.json values
