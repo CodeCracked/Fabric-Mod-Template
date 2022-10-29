@@ -1,4 +1,4 @@
-package mod_profiles;
+package modtemplate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -61,7 +61,7 @@ public class IniFile
         }
         catch (SocketTimeoutException e)
         {
-            ModProfilesMod.LOGGER.error("Version check timed out!");
+            TemplateMod.LOGGER.error("Version check timed out!");
             throw e;
         }
     }
