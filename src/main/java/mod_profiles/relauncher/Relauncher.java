@@ -2,26 +2,19 @@ package mod_profiles.relauncher;
 
 import mod_profiles.ModProfilesMod;
 import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.impl.launch.knot.KnotClient;
 import net.minecraft.SharedConstants;
 import net.minecraft.client.MinecraftClient;
 import net.puffish.mclauncher.*;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 public final class Relauncher
 {
-    public static final String LAUNCHER_NAME = "mod-profiles-relauncher";
-    public static final String ENTRY_POINT = "mod_profiles.relauncher.Relauncher";
-    
     public static String[] LAUNCH_ARGS;
     
-    public static void main(String[] args)
-    {
-        KnotClient.main(args);
-    }
     public static void relaunch(boolean softRelaunch)
     {
         try
@@ -33,14 +26,14 @@ public final class Relauncher
             // Find .minecraft Directory
             Path installationPath;
             Optional<String> assetsPathOptional = args.getOriginalArg("--assetsDir");
-            if (assetsPathOptional.isPresent()) installationPath = Path.of(assetsPathOptional.get()).getParent();
+            if (assetsPathOptional.isPresent()) installationPath = Paths.get(assetsPathOptional.get()).getParent();
             else
             {
                 installationPath = switch (os)
                 {
-                    case WINDOWS -> Path.of(System.getenv("APPDATA")).resolve(".minecraft");
-                    case LINUX -> Path.of(System.getProperty("user.home")).resolve(".minecraft");
-                    case MACOS -> Path.of(System.getProperty("user.home")).resolve("Library").resolve("Application Support").resolve("minecraft");
+                    case WINDOWS -> Paths.get(System.getenv("APPDATA")).resolve(".minecraft");
+                    case LINUX -> Paths.get(System.getProperty("user.home")).resolve(".minecraft");
+                    case MACOS -> Paths.get(System.getProperty("user.home")).resolve("Library").resolve("Application Support").resolve("minecraft");
                 };
             }
             ModProfilesMod.LOGGER.info("Install Path: " + installationPath);
@@ -68,7 +61,7 @@ public final class Relauncher
                     .info()
                     .command()
                     .orElseThrow();
-            Command launchCommand = version.getLaunchCommand(args, Path.of(javaExecutablePath));
+            Command launchCommand = version.getLaunchCommand(args, Paths.get(javaExecutablePath));
             ModProfilesMod.LOGGER.info("Relaunch Command: " + launchCommand.toString());
             
             // Execute Relaunch

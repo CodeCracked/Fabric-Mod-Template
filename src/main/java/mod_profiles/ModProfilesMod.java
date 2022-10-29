@@ -2,18 +2,25 @@ package mod_profiles;
 
 import mod_profiles.relauncher.Relauncher;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;
+import net.fabricmc.loader.impl.launch.knot.KnotClient;
+import net.minecraft.client.main.Main;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.random.Random;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -21,7 +28,6 @@ public class ModProfilesMod implements ClientModInitializer
 {
     public static final String MODID = "mod_profiles";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static String MOD_FILE_PATH;
 
     private boolean ranVersionCheck;
     
@@ -50,7 +56,16 @@ public class ModProfilesMod implements ClientModInitializer
         try
         {
             File jarFile = new File(ModProfilesMod.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-            MOD_FILE_PATH = URLDecoder.decode(jarFile.getPath(), StandardCharsets.UTF_8);
+            String jarPath = URLDecoder.decode(jarFile.getPath(), StandardCharsets.UTF_8);
+            LOGGER.info(jarPath);
+    
+            jarFile = new File(KnotClient.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+            jarPath = URLDecoder.decode(jarFile.getPath(), StandardCharsets.UTF_8);
+            LOGGER.info(jarPath);
+    
+            jarFile = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+            jarPath = URLDecoder.decode(jarFile.getPath(), StandardCharsets.UTF_8);
+            LOGGER.info(jarPath);
         }
         catch (URISyntaxException e)
         {
